@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack'; rs
 
 const Stack = createStackNavigator();
 
@@ -16,7 +16,7 @@ class App extends React.Component {
     super(props);
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   render() {
     return (

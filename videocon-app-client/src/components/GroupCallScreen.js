@@ -93,8 +93,9 @@ function CallList({ name, stream, len }) {
       style={{
         minHeight: Dimensions.get('window').height / len,
         flex: 1,
-        backgroundColor: "red",
+        backgroundColor: "blue",
         margin: 2,
+        position: 'relative',
       }}>
       <RTCView
         streamURL={stream.toURL()}

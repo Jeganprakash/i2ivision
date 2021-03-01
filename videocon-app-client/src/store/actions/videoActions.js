@@ -10,7 +10,7 @@ import { mediaDevices } from 'react-native-webrtc';
 import { ADD_REMOTE_STREAM, ADD_STREAM, ALL_USERS, MY_STREAM } from './types';
 
 //** API_URI */
-export const API_URI = `http://192.168.43.102:5000`;
+export const API_URI = `https://00f3547a59be.ngrok.io`;
 console.log(API_URI)
 
 
@@ -101,7 +101,7 @@ export const userJoin = () => async (dispatch, getState) => {
         };
       }
     }).filter((data) => data !== undefined);
-    console.log("fusers", fUsers)
+    console.log("fusers")
     //Get all users
     dispatch({ type: ALL_USERS, payload: fUsers })
     console.log("ALL userz", getState().auth)
@@ -132,10 +132,10 @@ export const joinStream = (stream) => async (dispatch, getState) => {
   })
 
   const peerServer2 = new Peer(undefined, {
-    host: "192.168.43.102",
+    host: "00f3547a59be.ngrok.io",
     path: "/peerjs",
-    secure: false,
-    port: 5000,
+    secure: true,
+    port: 443,
     config: {
       iceServers: [
         {

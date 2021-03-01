@@ -63,7 +63,7 @@ io.on("connection", function (socket) {
   });
 
   socket.on('user-exists', ({ user, socketID }) => {
-    console.log("user-exists", socketID)
+    console.log("user-exists", user, socketID)
     //check if the new user exists in active chat
     Active.findOne({ email: user.email }).then((user) => {
       //emit found to last connected user
@@ -138,7 +138,30 @@ io.on("connection", function (socket) {
     });
   })
 
+  socket.on('disconnecting', () => {
+    var rooms = Object.keys(socket.rooms)
+    console.log("disconnecting ", rooms, socket.id)
+    rooms.forEach((room) => {
+      socket.to(room).emit('connection-left', socket.id)
+    })
+  })
+
+  socket.on('me-disconnecting', () => {
+    var rooms = Object.keys(socket.rooms)
+    console.log("disconnecting ", rooms, socket.id)
+    rooms.forEach((room) => {
+      if (room !== "ajsdflajslkdfuaisfjwioerwqiheriyqw87ery") {
+
+        socket.to(room).emit('connection-left', socket.id)
+        socket.leave(room)
+      }
+    })
+  })
+
+
 });
+
+
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => console.log(`Server started on port ${port}`));

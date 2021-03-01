@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,9 +8,9 @@ import {
   TextInput,
   Text,
 } from 'react-native';
-import {StackActions} from '@react-navigation/native';
-import {Button} from 'react-native-paper';
-import {useDispatch, useSelector} from 'react-redux';
+import { StackActions } from '@react-navigation/native';
+import { Button } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -19,10 +19,10 @@ const SignIn = require('../assets/SignIn.png');
 const Logo = require('../assets/logo.png');
 
 /* Actions */
-import {login, register, loadUser} from '../store/actions/authActions';
-import {joinGeneralRoom, userJoin} from '../store/actions/videoActions';
+import { login, register, loadUser } from '../store/actions/authActions';
+import { joinGeneralRoom, userJoin } from '../store/actions/videoActions';
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   root: {
@@ -40,21 +40,21 @@ const styles = StyleSheet.create({
   },
 });
 
-function LoginScreen({navigation}) {
+function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
 
-  const dispatch = useDispatch();
+
 
   const auth = useSelector((state) => state.auth);
 
   const onLogin = () => {
-    dispatch(login({password, email}));
+    dispatch(login({ password, email }));
   };
 
   const onRegister = () => {
-    dispatch(register({email, password}));
+    dispatch(register({ email, password }));
   };
 
   const handleBackButtonClick = () => {
@@ -77,7 +77,7 @@ function LoginScreen({navigation}) {
   }, []);
 
   useEffect(() => {
-    const {isAuthenticated, user} = auth;
+    const { isAuthenticated, user } = auth;
     if (isAuthenticated) {
       navigation.dispatch(StackActions.replace('UserList'));
     }
@@ -90,8 +90,8 @@ function LoginScreen({navigation}) {
         justifyContent: 'flex-start',
         flexDirection: 'column',
       }}>
-      <View style={{...styles.top}}>
-        <Image source={Face} style={{width, height: height * 0.29}} />
+      <View style={{ ...styles.top }}>
+        <Image source={Face} style={{ width, height: height * 0.29 }} />
       </View>
       <View
         style={{
@@ -105,7 +105,7 @@ function LoginScreen({navigation}) {
           }}>
           <Image
             source={SignIn}
-            style={{width: 100, height: 100}}
+            style={{ width: 100, height: 100 }}
             resizeMode="contain"
           />
         </View>
@@ -176,7 +176,7 @@ function LoginScreen({navigation}) {
           }}>
           <Image
             source={Logo}
-            style={{height: 100, width: 100}}
+            style={{ height: 100, width: 100 }}
             resizeMode="contain"
           />
         </View>
